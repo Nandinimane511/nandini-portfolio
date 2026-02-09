@@ -33,10 +33,9 @@ const Education = () => {
     {
       id: 2,
       degree: "12th HSC",
-      institution: "Chhatrapati Shivaji Junior College of Arts, Science & Commerce",
+      institution: "Chhatrapati Shivaji Junior College",
       duration: "2021 - 2023",
       location: "Solapur, Maharashtra",
-      grade: "",
       description: "Science Stream with Computer Science",
       icon: <FaBook />,
       color: "var(--green)",
@@ -75,10 +74,10 @@ const Education = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, y: 30 },
     visible: { 
       opacity: 1, 
-      x: 0,
+      y: 0,
       transition: {
         type: "spring",
         stiffness: 100,
@@ -88,7 +87,7 @@ const Education = () => {
   };
 
   return (
-    <section id="education" className="section education-section" ref={ref}>
+    <section id="education" className="section education-section" ref={ref} data-reveal>
       <div className="container">
         <motion.div 
           className="section-header"
@@ -96,20 +95,12 @@ const Education = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-number">02.</span>
           <h2 className="section-title">Education</h2>
           <p className="section-subtitle">My Academic Journey</p>
         </motion.div>
 
         <div className="timeline-container">
-          <div className="timeline-line">
-            <motion.div 
-              className="timeline-progress"
-              initial={{ scaleY: 0 }}
-              animate={isInView ? { scaleY: 1 } : {}}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-            />
-          </div>
+          <div className="timeline-line"></div>
 
           <motion.div 
             className="timeline-items"
@@ -122,15 +113,11 @@ const Education = () => {
                 key={edu.id}
                 className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
                 variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.02,
-                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)"
-                }}
               >
                 <motion.div 
                   className="timeline-dot"
                   style={{ borderColor: edu.color }}
-                  whileHover={{ scale: 1.3, rotate: 360 }}
+                  whileHover={{ scale: 1.2, rotate: 360 }}
                   transition={{ duration: 0.5 }}
                 >
                   <div className="dot-icon" style={{ color: edu.color }}>

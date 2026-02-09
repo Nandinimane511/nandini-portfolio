@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nandini Mane - Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .resume-container {
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #4a6fa5;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a6fa5;
+        }
+        
+        section {
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .job, .education-item, .project {
+            margin-bottom: 20px;
+        }
+        
+        .job-title, .education-title, .project-title {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .company, .institution, .project-tech {
+            color: #4a6fa5;
+            font-weight: 500;
+        }
+        
+        .date-location {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .skill-tag {
+            background-color: #e8f4ff;
+            color: #2c3e50;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #c5e1ff;
+        }
+        
+        /* Summary Card Styles */
+        .summary-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #4a6fa5;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .card-header h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+        }
+        
+        .download-btn {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #3a5a80;
+        }
+        
+        .card-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .card-item {
+            margin-bottom: 10px;
+        }
+        
+        .card-label {
+            font-weight: 600;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        .card-value {
+            color: #555;
+        }
+        
+        @media (max-width: 768px) {
+            .card-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        .print-only {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="header">
+            <h1>NANDINI MANE</h1>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+91-9021461293</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>nandinimane230@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>https://www.linkedin.com/in/nandini-mane-757020280</span>
+                </div>
+            </div>
+        </div>
+        
+        <section>
+            <h2>SUMMARY</h2>
+            <p>As a Computer Engineering student, I combine strong academics with hands-on project experience in full-stack development using Java, HTML/CSS, JavaScript, React, Node.js, and MySQL. I also have growing expertise in AI/ML, including data preprocessing, model training, and automation. I’m adaptable, collaborative, and have strengthened my teamwork through leadership roles. My creativity in art and design helps me bring innovative and user-focused solutions to every project.</p>
+            
+            <!-- Downloadable Summary Card -->
+            <div class="summary-card" id="summaryCard">
+                <div class="card-header">
+                    <h3>Professional Summary Card</h3>
+                    <button class="download-btn" id="downloadCardBtn">
+                        <i class="fas fa-download"></i> Download Card
+                    </button>
+                </div>
+                <div class="card-content">
+                    <div class="card-item">
+                        <span class="card-label">Name:</span>
+                        <span class="card-value">Nandini Mane</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">Education:</span>
+                        <span class="card-value">B.E. Computer Engineering (CGPA: 8.25)</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">Tech Stack:</span>
+                        <span class="card-value">Full-stack (React, Node.js, MySQL), AI/ML (PyTorch, OpenCV)</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">Key Projects:</span>
+                        <span class="card-value">Car Rental System, Deep Fake Detection, Medical Inventory Management</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">Contact:</span>
+                        <span class="card-value">+91-9021461293 | nandinimane230@gmail.com</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">LinkedIn:</span>
+                        <span class="card-value">linkedin.com/in/nandini-mane-757020280</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>WORK EXPERIENCE</h2>
+            <div class="job">
+                <div class="job-title">Marketing team member</div>
+                <div class="company">RGIT CESS</div>
+                <div class="date-location">Andheri, India | 07/2024 - 07/2025</div>
+                <ul>
+                    <li>Coordinated with external companies and organizations to arrange technical workshops and seminars.</li>
+                    <li>Handled professional communication via email and calls for sponsorships and collaborations.</li>
+                </ul>
+            </div>
+            
+            <div class="job">
+                <div class="job-title">Artificial Intelligence Intern</div>
+                <div class="company">My Job Grow</div>
+                <ul>
+                    <li>Assisted in developing and testing AI/ML models and integrating them into web applications to improve automation and decision-making.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>EDUCATION</h2>
+            <div class="education-item">
+                <div class="education-title">B.E in Computer Engineering (CGPA 8.25)</div>
+                <div class="institution">Rajiv Gandhi Institute of Technology, Mumbai University</div>
+                <div class="date-location">Andheri, Maharashtra | 08/2023 - 06/2027</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-title">12th HSC</div>
+                <div class="institution">Chhatrapati Shivaji Junior College of Arts, Science & Commerce</div>
+                <div class="date-location">Solapur, Maharashtra | 08/2021 - 02/2023</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-title">10th ICSE, Percentage: 86.42%</div>
+                <div class="institution">Saint Thomas English Medium School</div>
+                <div class="date-location">Solapur, Maharashtra | 05/2009 - 04/2021</div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>PROJECTS</h2>
+            <div class="project">
+                <div class="project-title">Car Rental System</div>
+                <ul>
+                    <li>Developed a Car Rental System in Java using OOP concepts for vehicle management, customer bookings, and automated invoices.</li>
+                    <li>Used ArrayLists and dynamic data structures to manage real-time updates for vehicles, customers, and rentals.</li>
+                </ul>
+            </div>
+            
+            <div class="project">
+                <div class="project-title">Deep Fake Detection</div>
+                <ul>
+                    <li>Built a DeepFake Detection model using ResNet-18 with transfer learning for real/fake face classification.</li>
+                    <li>Applied Python libraries (PyTorch, OpenCV, NumPy, Pandas) for data preprocessing, training, and visualization.</li>
+                    <li>Used MySQL to store model metadata, dataset paths, and performance logs.</li>
+                </ul>
+            </div>
+            
+            <div class="project">
+                <div class="project-title">MEDSTOCK-MEDICAL INVENTORY MANAGEMENT</div>
+                <ul>
+                    <li>Built a full-stack Medical Inventory Management System using React.js, Node.js, and MySQL with secure role-based access control.</li>
+                    <li>Implemented real-time stock tracking, low-stock/expiry alerts, and streamlined inventory updates.</li>
+                    <li>Designed a user-friendly dashboard to simplify monitoring and support faster decision-making.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>SKILLS</h2>
+            <div class="skills-container">
+                <span class="skill-tag">C</span>
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">Tailwind CSS</span>
+                <span class="skill-tag">Bootstrap</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">PyTorch</span>
+                <span class="skill-tag">NumPy</span>
+                <span class="skill-tag">Pandas</span>
+                <span class="skill-tag">OpenCV</span>
+                <span class="skill-tag">Matplotlib</span>
+                <span class="skill-tag">Scikit-learn</span>
+                <span class="skill-tag">GitHub</span>
+                <span class="skill-tag">VS Code</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- Hidden canvas for generating card image -->
+    <canvas id="cardCanvas" style="display: none;"></canvas>
+    
+    <script>
+        document.getElementById('downloadCardBtn').addEventListener('click', function() {
+            downloadSummaryCard();
+        });
+        
+        function downloadSummaryCard() {
+            const card = document.getElementById('summaryCard');
+            const cardHeader = card.querySelector('.card-header h3').textContent;
+            
+            // Create a simple text version of the card for download
+            const cardContent = `
+========================================
+          PROFESSIONAL SUMMARY CARD
+========================================
+Name: Nandini Mane
+Education: B.E. Computer Engineering (CGPA: 8.25)
+Tech Stack: Full-stack (React, Node.js, MySQL), AI/ML (PyTorch, OpenCV)
+Key Projects: Car Rental System, Deep Fake Detection, Medical Inventory Management
+Contact: +91-9021461293 | nandinimane230@gmail.com
+LinkedIn: linkedin.com/in/nandini-mane-757020280
+========================================
+            `;
+            
+            // Create a Blob with the card content
+            const blob = new Blob([cardContent], { type: 'text/plain' });
+            
+            // Create a download link
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = 'Nandini_Mane_Summary_Card.txt';
+            
+            // Trigger the download
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            
+            // Show a confirmation message
+            alert('Summary card downloaded as "Nandini_Mane_Summary_Card.txt"');
+        }
+    </script>
+</body>
+</html>

@@ -26,7 +26,7 @@ const Skills = () => {
     },
     {
       category: "AI/ML & Tools",
-      skills: ["PyTorch", "TensorFlow", "NumPy", "Pandas", "OpenCV", "GitHub"],
+      skills: ["PyTorch", "TensorFlow", "NumPy", "Pandas", "GitHub"],
       color: "var(--purple)",
       icon: "🤖"
     }
@@ -43,7 +43,7 @@ const Skills = () => {
   };
 
   const categoryVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
@@ -70,7 +70,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="section skills-section" ref={ref}>
+    <section id="skills" className="section skills-section" ref={ref} data-reveal>
       <div className="container">
         <motion.div 
           className="section-header"
@@ -78,7 +78,6 @@ const Skills = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-number">06.</span>
           <h2 className="section-title">Skills</h2>
           <p className="section-subtitle">Technical Proficiency</p>
         </motion.div>
@@ -94,11 +93,7 @@ const Skills = () => {
               key={catIndex}
               className="skill-category-card"
               variants={categoryVariants}
-              whileHover={{ 
-                y: -10,
-                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)"
-              }}
-              style={{ '--category-color': category.color }}
+              whileHover={{ y: -5 }}
             >
               <div className="category-header">
                 <div className="category-icon" style={{ color: category.color }}>
@@ -114,18 +109,14 @@ const Skills = () => {
                     className="skill-item"
                     custom={skillIndex}
                     variants={skillVariants}
-                    whileHover={{ 
-                      scale: 1.1, 
-                      rotate: [0, -5, 5, 0],
-                      transition: { duration: 0.3 }
-                    }}
+                    whileHover={{ scale: 1.05 }}
                     style={{ 
-                      background: `${category.color}15`,
+                      background: `${category.color}10`,
                       borderColor: category.color
                     }}
                   >
                     <span className="skill-name">{skill}</span>
-                    <div className="skill-level" style={{ background: `${category.color}40` }}>
+                    <div className="skill-level" style={{ background: `${category.color}30` }}>
                       <motion.div 
                         className="skill-level-fill"
                         style={{ background: category.color }}

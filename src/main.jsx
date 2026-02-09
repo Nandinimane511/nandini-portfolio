@@ -1,7 +1,10 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
+import './index.css';
 import './App.css';
+import initScrollReveal from './utils/scrollReveal';
 
 // Error Boundary for better error handling
 class ErrorBoundary extends React.Component {
@@ -44,14 +47,17 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
     <ErrorBoundary>
       <App />
     </ErrorBoundary>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 
+// Initialize scroll reveal animations (adds .reveal to elements with data-reveal)
+initScrollReveal();
 // Add service worker for PWA (optional)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

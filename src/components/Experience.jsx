@@ -6,7 +6,6 @@ import {
   FaBuilding, 
   FaTasks,
   FaRocket,
-  FaChartLine,
   FaUsers,
   FaLightbulb
 } from 'react-icons/fa';
@@ -30,7 +29,6 @@ const Experience = () => {
         "Assisted in developing and testing AI/ML models",
         "Integrated AI models into web applications",
         "Improved automation and decision-making processes",
-        "Collaborated with senior developers on complex problems"
       ],
       achievements: [
         "Increased model accuracy by 15%",
@@ -49,10 +47,9 @@ const Experience = () => {
       color: "var(--green)",
       tags: ["Communication", "Coordination", "Event Management"],
       responsibilities: [
-        "Coordinated with external companies for technical workshops and seminars",
-        "Handled professional communication via email and calls for sponsorships",
+        "Coordinated with external companies for technical workshops",
+        "Handled professional communication for sponsorships",
         "Managed collaborations and event planning",
-        "Organized campus tech events with 200+ participants"
       ],
       achievements: [
         "Secured 5+ sponsorships for events",
@@ -63,7 +60,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="section experience-section" ref={ref}>
+    <section id="experience" className="section experience-section" ref={ref} data-reveal>
       <div className="container">
         <motion.div 
           className="section-header"
@@ -71,7 +68,6 @@ const Experience = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-number">03.</span>
           <h2 className="section-title">Experience</h2>
           <p className="section-subtitle">Professional Journey</p>
         </motion.div>
@@ -81,17 +77,13 @@ const Experience = () => {
             <motion.div 
               key={exp.id}
               className="experience-card-wrapper"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
               <motion.div 
                 className="experience-card"
-                whileHover={{ 
-                  y: -15,
-                  boxShadow: `0 25px 50px rgba(${exp.id === 1 ? '0, 162, 255' : '0, 255, 136'}, 0.2)`
-                }}
-                style={{ '--card-color': exp.color }}
+                whileHover={{ y: -10 }}
               >
                 <div className="experience-header">
                   <div className="experience-icon-container" style={{ background: `${exp.color}20`, color: exp.color }}>
@@ -120,17 +112,13 @@ const Experience = () => {
 
                 <div className="experience-tags">
                   {exp.tags.map((tag, idx) => (
-                    <motion.span 
+                    <span 
                       key={idx}
                       className="experience-tag"
                       style={{ background: `${exp.color}20`, color: exp.color }}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: idx * 0.1 }}
-                      whileHover={{ scale: 1.1 }}
                     >
                       {tag}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
 
@@ -141,16 +129,10 @@ const Experience = () => {
                   </div>
                   <ul className="responsibilities-list">
                     {exp.responsibilities.map((resp, idx) => (
-                      <motion.li 
-                        key={idx}
-                        className="responsibility-item"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.1 + 0.3 }}
-                      >
+                      <li key={idx} className="responsibility-item">
                         <span className="bullet" style={{ background: exp.color }} />
                         {resp}
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -162,31 +144,13 @@ const Experience = () => {
                   </div>
                   <ul className="achievements-list">
                     {exp.achievements.map((achievement, idx) => (
-                      <motion.li 
-                        key={idx}
-                        className="achievement-item"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.1 + 0.5 }}
-                      >
+                      <li key={idx} className="achievement-item">
                         <span className="achievement-icon" style={{ color: exp.color }}>✓</span>
                         {achievement}
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
                 </div>
-
-                <motion.div 
-                  className="experience-card-footer"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  <div className="experience-duration-line">
-                    <div className="line" style={{ background: exp.color }} />
-                    <span className="duration-text">{exp.duration}</span>
-                  </div>
-                </motion.div>
               </motion.div>
             </motion.div>
           ))}

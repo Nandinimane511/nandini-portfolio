@@ -1,19 +1,22 @@
-import React, { useRef } from 'react';
+// src/components/Contact.jsx
+import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { 
   FaPhone, 
   FaEnvelope, 
   FaMapMarkerAlt, 
   FaPaperPlane,
-  FaGithub,
-  FaLinkedin,
-  FaInstagram
+  FaRobot,
+  FaTimes
 } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
+import ContactForm from './ContactForm';
+import AIChatbot from './AIChatbot';
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const [showChatbot, setShowChatbot] = useState(false);
 
   const contactCards = [
     {
@@ -40,123 +43,123 @@ const Contact = () => {
       title: "Location",
       value: "Mumbai, India",
       color: "var(--orange)",
-      link: "#",
+      link: "https://maps.google.com/?q=Mumbai,India",
       delay: 0.3
     }
   ];
 
-  const socialLinks = [
-    { icon: <FaGithub />, link: "https://github.com", color: "#333" },
-    { icon: <FaLinkedin />, link: "https://linkedin.com/in/nandini-mane", color: "#0077b5" },
-    { icon: <FaInstagram />, link: "https://instagram.com", color: "#e4405f" }
-  ];
-
   return (
-    <section id="contact" className="section contact-section" ref={ref}>
-      <div className="container">
-        <motion.div 
-          className="section-header"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="section-number">04.</span>
-          <h2 className="section-title">Get In Touch</h2>
-          <p className="section-subtitle">Let's Connect</p>
-        </motion.div>
+    <>
+      <section id="contact" className="section contact-section" ref={ref} data-reveal>
+        <div className="container">
+          <motion.div 
+            className="section-header"
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="section-title">Get In Touch</h2>
+            <p className="section-subtitle">Let's Connect & Collaborate</p>
+          </motion.div>
 
-        <motion.div 
-          className="contact-content"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="contact-description-container">
-            <motion.p 
-              className="contact-description"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
+          <div className="contact-grid">
+            {/* Left Column: Contact Info & Cards */}
+            <motion.div 
+              className="contact-info-column"
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Although I'm not currently looking for any new opportunities, 
-              my inbox is always open. Whether you have a question or just want to say hi, 
-              I'll try my best to get back to you!
-            </motion.p>
-            
-            <motion.a 
-              href="mailto:nandinimane230@gmail.com"
-              className="email-button"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              <div className="contact-welcome-card">
+                <div className="welcome-icon">
+                  <HiMail />
+                </div>
+                <h3>Quick Contact</h3>
+                <p className="welcome-text">
+                  Feel free to reach out for collaborations or just a friendly hello. 
+                  I typically respond within 24 hours.
+                </p>
+                
+                <motion.a 
+                  href="mailto:nandinimane230@gmail.com"
+                  className="email-button"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0, 162, 255, 0.3)" }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <HiMail className="button-icon" />
+                  <span>Say Hello</span>
+                  <FaPaperPlane className="send-icon" />
+                </motion.a>
+              </div>
+
+              <div className="contact-cards-container">
+                {contactCards.map((card, index) => (
+                  <motion.a
+                    key={card.id}
+                    href={card.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-card"
+                    initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                    animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: card.delay }}
+                    whileHover={{ 
+                      y: -8,
+                      scale: 1.03,
+                      boxShadow: `0 10px 30px rgba(${card.id === 1 ? '0, 162, 255' : card.id === 2 ? '0, 255, 136' : '255, 136, 0'}, 0.2)`
+                    }}
+                    style={{ '--card-color': card.color }}
+                  >
+                    <div className="contact-card-icon" style={{ background: `${card.color}20`, color: card.color }}>
+                      {card.icon}
+                    </div>
+                    <h3>{card.title}</h3>
+                    <p>{card.value}</p>
+                    <div className="contact-card-action">
+                      <span>{card.title === 'Location' ? 'View on Map' : 'Click to Contact'}</span>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
+
+              <div className="contact-faq">
+                <h4 className="faq-title">Frequently Asked</h4>
+                <div className="faq-items">
+                  <div className="faq-item">
+                    <span className="faq-q">Response Time?</span>
+                    <span className="faq-a">Within 24-48 hours</span>
+                  </div>
+                  <div className="faq-item">
+                    <span className="faq-q">Best way to reach?</span>
+                    <span className="faq-a">Email or LinkedIn</span>
+                  </div>
+                  <div className="faq-item">
+                    <span className="faq-q">Open to collaborations?</span>
+                    <span className="faq-a">Always! Let's build something</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Column: Contact Form */}
+            <motion.div 
+              className="contact-form-column"
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0, 162, 255, 0.3)" }}
-              whileTap={{ scale: 0.95 }}
             >
-              <HiMail className="button-icon" />
-              <span>Say Hello</span>
-              <FaPaperPlane className="send-icon" />
-            </motion.a>
+              <ContactForm />
+            </motion.div>
           </div>
+        </div>
+      </section>
 
-          <div className="contact-cards-container">
-            {contactCards.map((card, index) => (
-              <motion.a
-                key={card.id}
-                href={card.link}
-                className="contact-card"
-                initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: card.delay }}
-                whileHover={{ 
-                  y: -10,
-                  scale: 1.05,
-                  boxShadow: `0 15px 40px rgba(${card.id === 1 ? '0, 162, 255' : card.id === 2 ? '0, 255, 136' : '255, 136, 0'}, 0.2)`
-                }}
-                style={{ '--card-color': card.color }}
-              >
-                <div className="contact-card-icon" style={{ background: `${card.color}20`, color: card.color }}>
-                  {card.icon}
-                </div>
-                <h3>{card.title}</h3>
-                <p>{card.value}</p>
-                <div className="contact-card-hover">
-                  <span>Click to {card.title === 'Location' ? 'view' : 'contact'}</span>
-                </div>
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div 
-          className="contact-footer"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <div className="social-links-container">
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                style={{ background: `${social.color}20`, color: social.color }}
-              >
-                {social.icon}
-              </motion.a>
-            ))}
-          </div>
-          
-          <div className="copyright">
-            <p>© 2025 Nandini Mane. All rights reserved.</p>
-            <p className="built-with">Built with React & 💤</p>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+      {/* AI Chatbot */}
+      <AIChatbot showChatbot={showChatbot} setShowChatbot={setShowChatbot} />
+    </>
   );
 };
 

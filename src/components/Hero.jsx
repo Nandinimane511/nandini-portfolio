@@ -1,34 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaFileDownload, FaArrowRight } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
+import ThreeBackground from './ThreeBackground';
 
 const Hero = () => {
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+  const resumeHref = '/resume.pdf';
+  
+  const texts = [
+    "Full-Stack Developer",
+    "Computer Engineering Student",
+    "AI/ML Enthusiast",
+    "Problem Solver"
+  ];
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const i = loopNum % texts.length;
+      const fullText = texts[i];
+      
+      setDisplayText(isDeleting 
+        ? fullText.substring(0, displayText.length - 1)
+        : fullText.substring(0, displayText.length + 1)
+      );
+      
+      setTypingSpeed(isDeleting ? 50 : 150);
+      
+      if (!isDeleting && displayText === fullText) {
+        setTimeout(() => setIsDeleting(true), 1500);
+      } else if (isDeleting && displayText === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, loopNum, texts, typingSpeed]);
+
   return (
     <section id="home" className="hero">
+      <div className="hero-three-background">
+        <ThreeBackground />
+      </div>
       {/* Left Social Links */}
       <motion.div 
         className="social-links"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1, duration: 0.8 }}
       >
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/Nandinimane511" target="_blank" rel="noopener noreferrer" title="GitHub">
           <FaGithub />
         </a>
-        <a href="https://linkedin.com/in/nandini-mane" target="_blank" rel="noopener noreferrer">
+        <a href="https://linkedin.com/in/nandini-mane-757020280" target="_blank" rel="noopener noreferrer" title="LinkedIn">
           <FaLinkedin />
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-          </svg>
+        <a href="mailto:nandinimane230@gmail.com" className="email-social" title="Email">
+          <HiMail />
         </a>
       </motion.div>
 
-      {/* Hero Content */}
+      {/* Hero Content - Left Side */}
       <div className="hero-content">
         <motion.h4 
           className="hero-greeting"
@@ -36,7 +73,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Hi, my name is
+          👋 Hello! I'm
         </motion.h4>
         
         <motion.h1 
@@ -45,17 +82,20 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Nandini Mane.
+          Nandini <span className="highlight">Mane</span>.
         </motion.h1>
         
-        <motion.h2 
-          className="hero-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          Computer Engineering Student!
-        </motion.h2>
+        <div className="typing-container">
+          <motion.h2 
+            className="hero-subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <span className="typing-text">{displayText}</span>
+            <span className="typing-cursor">|</span>
+          </motion.h2>
+        </div>
         
         <motion.p 
           className="hero-description"
@@ -63,9 +103,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          Passionate about building innovative solutions with modern technologies. 
-          Currently pursuing Computer Engineering with a focus on software development, 
-          machine learning, and cloud computing.
+          A passionate Computer Engineering student at Rajiv Gandhi Institute of Technology, 
+          specializing in Full-Stack Development and AI/ML. I love building innovative 
+          solutions that make a difference.
         </motion.p>
         
         <motion.div 
@@ -74,16 +114,25 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <a 
-            href="/nandini mane 1 page resume.pdf" 
+          <motion.a 
+            href={resumeHref}
             className="btn-primary"
-            download
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            download="Nandini_Mane_Resume.pdf"
           >
-            <FaFileDownload /> View Resume
-          </a>
-          <a href="#contact" className="btn-secondary">
+            <FaFileDownload /> Download Resume
+          </motion.a>
+          <motion.a 
+            href="#contact" 
+            className="btn-secondary"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             Get In Touch <FaArrowRight />
-          </a>
+          </motion.a>
         </motion.div>
       </div>
 
@@ -91,12 +140,14 @@ const Hero = () => {
       <motion.a 
         href="mailto:nandinimane230@gmail.com"
         className="email-link"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1, duration: 0.8 }}
+        title="Send me an email"
       >
         nandinimane230@gmail.com
       </motion.a>
+
     </section>
   );
 };

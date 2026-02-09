@@ -7,14 +7,15 @@ import {
   FaBriefcase, 
   FaCode,
   FaTools,
-  FaEnvelope,
-  FaFileDownload
+  FaEnvelope
 } from 'react-icons/fa';
 import { HiDownload } from 'react-icons/hi';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const resumeHref = '/resume.pdf';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +43,14 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
   const navItems = [
     { id: 'home', label: 'Home', icon: <FaHome /> },
     { id: 'about', label: 'About', icon: <FaUser /> },
@@ -54,11 +63,26 @@ const Header = () => {
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-      <nav className="nav-container">
+      <nav className="nav-container" data-reveal>
         <div className="logo">
-          <span className="logo-text">NM</span>
-          <span className="logo-full">Nandini Mane</span>
+          <div className="logo-text-container">
+            <span className="logo-text">NM</span>
+            <span className="logo-full">Nandini Mane</span>
+          </div>
         </div>
+
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+        >
+          <span className="nav-toggle-bar" />
+          <span className="nav-toggle-bar" />
+          <span className="nav-toggle-bar" />
+        </button>
+
         <ul className="nav-links">
           {navItems.map((item) => (
             <li key={item.id}>
@@ -78,7 +102,7 @@ const Header = () => {
           ))}
           <li className="resume-container">
             <a 
-              href="/nandini mane 1 page resume.pdf" 
+              href={resumeHref}
               className="resume-btn"
               target="_blank"
               rel="noopener noreferrer"
@@ -89,6 +113,45 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+
+      {/* Mobile menu */}
+      <div className={`mobile-nav-overlay ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)} />
+      <div className={`mobile-nav ${menuOpen ? 'open' : ''}`} role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <div className="mobile-nav-header">
+          <div className="mobile-nav-title">Menu</div>
+          <button type="button" className="mobile-nav-close" aria-label="Close menu" onClick={() => setMenuOpen(false)}>
+            ×
+          </button>
+        </div>
+<div className="mobile-nav-links">
+  {navItems.map((item) => (
+    <Link
+      key={item.id}
+      to={item.id}
+      smooth={true}
+      duration={500}
+      offset={-80}
+      className={`mobile-nav-link ${activeSection === item.id ? 'active' : ''}`}
+      onClick={() => setMenuOpen(false)}
+    >
+      <span className="nav-icon">{item.icon}</span>
+      <span className="nav-label">{item.label}</span>
+    </Link>
+  ))}
+
+  {/* Resume Download */}
+  <a
+    href="/resume.pdf"               // public folder file
+    className="mobile-resume-btn"
+    download="resume.pdf" // force download
+    onClick={() => setMenuOpen(false)}
+  >
+    <HiDownload className="btn-icon" />
+    <span>Resume</span>
+  </a>
+</div>
+
+      </div>
     </header>
   );
 };
