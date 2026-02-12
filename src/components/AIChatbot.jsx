@@ -177,13 +177,18 @@ const AIChatbot = ({ showChatbot, setShowChatbot }) => {
       <motion.button
         className={`chatbot-toggle ${showChatbot ? 'active' : ''}`}
         onClick={() => setShowChatbot(!showChatbot)}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.9 }}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 1, type: 'spring' }}
+        aria-label={showChatbot ? 'Close chat assistant' : 'Open chat assistant'}
       >
-        {showChatbot ? <FaTimes /> : <FaRobot />}
+        {showChatbot ? (
+          <FaTimes />
+        ) : (
+          <HiOutlineChatAlt2 />
+        )}
         <span className="chatbot-pulse"></span>
       </motion.button>
 

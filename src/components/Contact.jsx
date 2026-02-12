@@ -96,12 +96,12 @@ const Contact = () => {
               </div>
 
               <div className="contact-cards-container">
-                {contactCards.map((card, index) => (
+                {contactCards.map((card) => (
                   <motion.a
                     key={card.id}
                     href={card.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={card.title === 'Location' ? '_blank' : undefined}
+                    rel={card.title === 'Location' ? 'noopener noreferrer' : undefined}
                     className="contact-card"
                     initial={{ opacity: 0, scale: 0.9, y: 30 }}
                     animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}

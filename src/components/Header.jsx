@@ -15,7 +15,7 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
-  const resumeHref = '/resume.pdf';
+  const resumeHref = 'resume.pdf';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -141,7 +141,7 @@ const Header = () => {
 
   {/* Resume Download */}
   <a
-    href="/resume.pdf"               // public folder file
+    href="resume.pdf"               // public folder file
     className="mobile-resume-btn"
     download="resume.pdf" // force download
     onClick={() => setMenuOpen(false)}

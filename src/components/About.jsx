@@ -4,21 +4,15 @@ import { Download } from 'lucide-react';
 import Counter from './Counter';
 
 const About = () => {
-  const resumeHref = '/resume.pdf';
+  const resumeHref = 'resume.pdf';
 
   const downloadPDFResume = () => {
-    // Create a link and trigger download
     const link = document.createElement('a');
-    link.href = resumeHref; // file is in public/
+    link.href = resumeHref;
     link.download = 'Nandini_Mane_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
-
-  const downloadSummaryCard = () => {
-    // Download the same PDF for now
-    downloadPDFResume();
   };
 
   return (
@@ -64,16 +58,35 @@ const About = () => {
               </div>
             </div>
 
-            <p className="about-text">
-              As a Computer Engineering student, I combine strong academics with hands-on project experience in full-stack development using Java, HTML/CSS, JavaScript, React, Node.js, and MySQL. I also have growing expertise in AI/ML, including data preprocessing, model training, and automation.
-            </p>
-            
-            <p className="about-text">
-              I'm adaptable, collaborative, and have strengthened my teamwork through leadership roles. My creativity in art and design helps me bring innovative and user-focused solutions to every project.
-            </p>
+            <div className="about-grid">
+              <div className="about-card">
+                <h3 className="about-card-title">Who I Am</h3>
+                <p className="about-card-text">
+                  A Computer Engineering student who blends strong academics with hands‑on project work
+                  in full‑stack development and AI/ML. I enjoy turning ideas into polished, user‑friendly
+                  products.
+                </p>
+              </div>
+
+              <div className="about-card">
+                <h3 className="about-card-title">What I Build</h3>
+                <p className="about-card-text">
+                  End‑to‑end web applications using React, Node.js and SQL/NoSQL databases, plus ML
+                  systems for tasks like deepfake detection and automation of repetitive workflows.
+                </p>
+              </div>
+
+              <div className="about-card">
+                <h3 className="about-card-title">How I Work</h3>
+                <p className="about-card-text">
+                  I care about clean architecture, readable code, and consistent UI/UX. I collaborate
+                  closely with teams, communicate clearly, and iterate quickly based on feedback.
+                </p>
+              </div>
+            </div>
           </motion.div>
           
-          {/* Downloadable Resume Card */}
+          {/* Professional Summary Card */}
           <motion.div
             className="summary-card"
             initial={{ opacity: 0, y: 30 }}
@@ -82,66 +95,86 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="card-header">
-              <h3 className="card-title">Professional Summary Card</h3>
+              <h3 className="card-title">Professional Summary</h3>
               <button 
                 className="download-btn"
-                onClick={downloadSummaryCard}
-                aria-label="Download summary card"
+                onClick={downloadPDFResume}
+                aria-label="Download professional summary as PDF"
               >
                 <Download size={16} />
-                <span>Download as PDF</span>
+                <span>Download Summary</span>
               </button>
             </div>
             
             <div className="card-grid">
               <div className="card-item">
-                <span className="card-label">Name:</span>
-                <span className="card-value">Nandini Mane</span>
+                <span className="card-label">Role</span>
+                <span className="card-value">Full‑Stack & AI/ML Developer in training</span>
               </div>
               <div className="card-item">
-                <span className="card-label">Education:</span>
-                <span className="card-value">B.E. Computer Engineering (CGPA: 8.25)</span>
+                <span className="card-label">Education</span>
+                <span className="card-value">B.E. Computer Engineering · CGPA 8.25</span>
               </div>
               <div className="card-item">
-                <span className="card-label">Tech Stack:</span>
-                <span className="card-value">Full-stack (React, Node.js, MySQL), AI/ML (PyTorch, OpenCV)</span>
+                <span className="card-label">Core Skills</span>
+                <span className="card-value">
+                  React · Node.js · Java · Python · SQL · Git · Machine Learning
+                </span>
               </div>
               <div className="card-item">
-                <span className="card-label">Key Projects:</span>
-                <span className="card-value">Car Rental System, Deep Fake Detection, Medical Inventory Management</span>
+                <span className="card-label">Notable Projects</span>
+                <span className="card-value">
+                  MEDSTOCK (inventory), Deep Fake Detection, Car Rental System
+                </span>
               </div>
               <div className="card-item">
-                <span className="card-label">Contact:</span>
-                <span className="card-value">+91-9021461293 | nandinimane230@gmail.com</span>
+                <span className="card-label">Contact</span>
+                <span className="card-value">+91‑9021461293 · nandinimane230@gmail.com</span>
               </div>
               <div className="card-item">
-                <span className="card-label">LinkedIn:</span>
+                <span className="card-label">LinkedIn</span>
                 <span className="card-value">linkedin.com/in/nandini-mane-757020280</span>
               </div>
             </div>
           </motion.div>
-          
-          {/* Additional Download Button */}
+
+          {/* Resume preview card with inline PDF + download */}
           <motion.div
-            className="resume-download-section"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            className="resume-embed-card"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <p className="download-prompt">
-              Want the complete version? Download my full resume:
-            </p>
-            
-            <motion.button 
-              className="full-resume-button"
-              onClick={downloadPDFResume}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Download size={20} />
-              Download Full Resume PDF
-            </motion.button>
+            <div className="resume-embed-header">
+              <div>
+                <h3>Resume Snapshot</h3>
+                <p>Preview my latest resume directly here or download a copy.</p>
+              </div>
+              <button
+                type="button"
+                className="resume-embed-download"
+                onClick={downloadPDFResume}
+              >
+                <Download size={16} />
+                <span>Download PDF</span>
+              </button>
+            </div>
+
+            <div className="resume-embed-body">
+              <div className="resume-embed-frame-wrapper">
+                <iframe
+                  src={resumeHref}
+                  title="Nandini Mane Resume"
+                  className="resume-embed-frame"
+                />
+              </div>
+              <ul className="resume-embed-highlights">
+                <li>✅ Full academic history and key projects in one page.</li>
+                <li>✅ Clear breakdown of skills across web, backend and AI/ML.</li>
+                <li>✅ Internship and leadership experience with measurable impact.</li>
+              </ul>
+            </div>
           </motion.div>
         </motion.div>
       </div>

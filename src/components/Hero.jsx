@@ -9,7 +9,7 @@ const Hero = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
-  const resumeHref = '/resume.pdf';
+  const resumeHref = 'resume.pdf';
   
   const texts = [
     "Full-Stack Developer",
