@@ -184,11 +184,7 @@ const AIChatbot = ({ showChatbot, setShowChatbot }) => {
         transition={{ delay: 1, type: 'spring' }}
         aria-label={showChatbot ? 'Close chat assistant' : 'Open chat assistant'}
       >
-        {showChatbot ? (
-          <FaTimes />
-        ) : (
-          <HiOutlineChatAlt2 />
-        )}
+        {showChatbot ? <FaTimes /> : <FaRobot />}
         <span className="chatbot-pulse"></span>
       </motion.button>
 

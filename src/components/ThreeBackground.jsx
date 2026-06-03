@@ -25,46 +25,46 @@ const ThreeBackground = () => {
       gl={{ antialias: true, alpha: true }}
       dpr={[1, 1.6]}
     >
-      <color attach="background" args={['#020617']} />
+      <color attach="background" args={['#0F172A']} />
       <ambientLight intensity={0.25} />
-      <directionalLight position={[5, 8, 5]} intensity={0.9} color="#38bdf8" />
+      <directionalLight position={[5, 8, 5]} intensity={0.9} color="#3B82F6" />
       <spotLight
         position={[-6, 4, 4]}
         angle={0.6}
         penumbra={0.5}
         intensity={0.7}
-        color="#22c55e"
+        color="#8B5CF6"
       />
 
       <Suspense fallback={null}>
         <AnimatedSphere
           position={[-2.8, 0.3, -3]}
-          color="#0f766e"
+          color="#1E40AF"
           distort={0.45}
           speed={2.2}
-          opacity={0.9}
-        />
-        <AnimatedSphere
-          position={[1.9, -0.3, -4]}
-          color="#6d28d9"
-          distort={0.55}
-          speed={1.6}
           opacity={0.85}
         />
         <AnimatedSphere
+          position={[1.9, -0.3, -4]}
+          color="#6D28D9"
+          distort={0.55}
+          speed={1.6}
+          opacity={0.8}
+        />
+        <AnimatedSphere
           position={[0.2, 1.7, -5]}
-          color="#ea580c"
+          color="#0E7490"
           distort={0.4}
           speed={2.0}
-          opacity={0.8}
+          opacity={0.75}
         />
 
         <Stars
           radius={40}
           depth={50}
-          count={1200}
-          factor={2.3}
-          saturation={0}
+          count={1500}
+          factor={2.5}
+          saturation={0.2}
           fade
         />
 
@@ -73,7 +73,7 @@ const ThreeBackground = () => {
           enableZoom={false}
           enableRotate
           autoRotate
-          autoRotateSpeed={0.8}
+          autoRotateSpeed={0.6}
         />
       </Suspense>
     </Canvas>
@@ -81,4 +81,3 @@ const ThreeBackground = () => {
 };
 
 export default ThreeBackground;
-

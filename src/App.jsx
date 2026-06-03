@@ -10,10 +10,12 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
+import ParticlesBackground from './components/ParticlesBackground';
 
 function App() {
   return (
     <div className="App">
+      <ParticlesBackground />
       <ScrollProgress />
       <Header />
       <Hero />

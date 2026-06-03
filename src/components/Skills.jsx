@@ -8,65 +8,60 @@ const Skills = () => {
   const skillCategories = [
     {
       category: "Programming Languages",
-      skills: ["C", "C++", "Java", "Python", "JavaScript"],
-      color: "var(--blue)",
+      skills: [
+        { name: "C", level: 85 },
+        { name: "C++", level: 80 },
+        { name: "Java", level: 88 },
+        { name: "Python", level: 90 },
+        { name: "JavaScript", level: 85 }
+      ],
+      gradient: "linear-gradient(135deg, #3B82F6, #6366F1)",
       icon: "💻"
     },
     {
       category: "Web Development",
-      skills: ["HTML5", "CSS3", "React.js", "Node.js", "Express.js"],
-      color: "var(--green)",
+      skills: [
+        { name: "HTML5", level: 95 },
+        { name: "CSS3", level: 90 },
+        { name: "React.js", level: 88 },
+        { name: "Node.js", level: 82 },
+        { name: "Express.js", level: 80 }
+      ],
+      gradient: "linear-gradient(135deg, #10B981, #06B6D4)",
       icon: "🌐"
     },
     {
       category: "Databases",
-      skills: ["MySQL", "MongoDB", "PostgreSQL"],
-      color: "var(--orange)",
+      skills: [
+        { name: "MySQL", level: 85 },
+        { name: "MongoDB", level: 78 },
+        { name: "PostgreSQL", level: 75 }
+      ],
+      gradient: "linear-gradient(135deg, #F59E0B, #EF4444)",
       icon: "🗄️"
     },
     {
       category: "AI/ML & Tools",
-      skills: ["PyTorch", "TensorFlow", "NumPy", "Pandas", "GitHub"],
-      color: "var(--purple)",
+      skills: [
+        { name: "PyTorch", level: 80 },
+        { name: "TensorFlow", level: 75 },
+        { name: "NumPy", level: 85 },
+        { name: "Pandas", level: 82 },
+        { name: "GitHub", level: 90 }
+      ],
+      gradient: "linear-gradient(135deg, #8B5CF6, #EC4899)",
       icon: "🤖"
     }
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
   };
 
   const categoryVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12
-      }
-    }
-  };
-
-  const skillVariants = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: (i) => ({
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: i * 0.05,
-        type: "spring",
-        stiffness: 200,
-        damping: 15
-      }
-    })
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
   };
 
   return (
@@ -93,13 +88,13 @@ const Skills = () => {
               key={catIndex}
               className="skill-category-card"
               variants={categoryVariants}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -6 }}
             >
               <div className="category-header">
-                <div className="category-icon" style={{ color: category.color }}>
-                  {category.icon}
-                </div>
-                <h3 style={{ color: category.color }}>{category.category}</h3>
+                <div className="category-icon">{category.icon}</div>
+                <h3 style={{ background: category.gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  {category.category}
+                </h3>
               </div>
               
               <div className="skills-grid">
@@ -107,22 +102,19 @@ const Skills = () => {
                   <motion.div
                     key={skillIndex}
                     className="skill-item"
-                    custom={skillIndex}
-                    variants={skillVariants}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ delay: skillIndex * 0.05 + catIndex * 0.1 + 0.3, type: "spring", stiffness: 200, damping: 15 }}
                     whileHover={{ scale: 1.05 }}
-                    style={{ 
-                      background: `${category.color}10`,
-                      borderColor: category.color
-                    }}
                   >
-                    <span className="skill-name">{skill}</span>
-                    <div className="skill-level" style={{ background: `${category.color}30` }}>
+                    <span className="skill-name">{skill.name}</span>
+                    <div className="skill-level">
                       <motion.div 
                         className="skill-level-fill"
-                        style={{ background: category.color }}
+                        style={{ background: category.gradient }}
                         initial={{ width: 0 }}
-                        animate={{ width: `${70 + Math.random() * 30}%` }}
-                        transition={{ delay: skillIndex * 0.1 + 0.5, duration: 1 }}
+                        animate={isInView ? { width: `${skill.level}%` } : {}}
+                        transition={{ delay: skillIndex * 0.1 + 0.5, duration: 1, ease: "easeOut" }}
                       />
                     </div>
                   </motion.div>
@@ -134,9 +126,9 @@ const Skills = () => {
 
         <motion.div 
           className="skills-summary"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8, duration: 0.6 }}
         >
           <div className="summary-content">
             <h4>Continuously Learning & Growing</h4>

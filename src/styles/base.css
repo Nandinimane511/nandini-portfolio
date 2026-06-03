@@ -1,0 +1,24 @@
+/* ===== BASE & VARIABLES ===== */
+:root{--bg:#0F172A;--bg2:#1E293B;--bg3:#334155;--pri:#3B82F6;--sec:#8B5CF6;--acc:#06B6D4;--t1:#F1F5F9;--t2:#CBD5E1;--t3:#94A3B8;--t4:#64748B;--grn:#10B981;--org:#F59E0B;--pnk:#EC4899;--red:#EF4444;--glass:rgba(30,41,59,0.6);--gb:rgba(148,163,184,0.1);--gbh:rgba(59,130,246,0.3);--r:16px;--rs:10px;--tr:all .3s cubic-bezier(.4,0,.2,1);--fd:'Outfit',sans-serif;--fb:'Inter',sans-serif;--fm:'Space Mono',monospace}
+.App{min-height:100vh;position:relative;overflow:hidden}
+
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--pri),var(--sec),var(--acc));z-index:1001;transition:width .1s ease;border-radius:0 2px 2px 0}
+
+/* ===== PARTICLES BACKGROUND ===== */
+.particles-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.particle{position:absolute;border-radius:50%;opacity:0;animation:floatParticle 15s infinite}
+@keyframes floatParticle{0%{opacity:0;transform:translateY(100vh) scale(0)}10%{opacity:1}90%{opacity:1}100%{opacity:0;transform:translateY(-10vh) scale(1)}}
+
+/* ===== SECTION COMMON ===== */
+.section{padding:100px 0;position:relative;z-index:1}
+.container{max-width:1200px;margin:0 auto;padding:0 40px}
+.section-header{text-align:center;margin-bottom:64px}
+.section-title{font-family:var(--fd);font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--t1);margin-bottom:8px;position:relative;display:inline-block}
+.section-title::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:60px;height:3px;background:linear-gradient(90deg,var(--pri),var(--sec));border-radius:2px}
+.section-subtitle{color:var(--pri);font-size:1rem;font-weight:500;margin-top:16px;font-family:var(--fm);letter-spacing:1px}
+.section-divider{position:absolute;left:50%;top:0;transform:translateX(-50%);width:min(1200px,calc(100% - 80px));height:1px;background:linear-gradient(90deg,transparent,var(--gb),transparent)}
+
+/* ===== GLASS CARD ===== */
+.glass-card{background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--gb);border-radius:var(--r);transition:var(--tr)}
+.glass-card:hover{border-color:var(--gbh);box-shadow:0 8px 32px rgba(59,130,246,0.08)}
